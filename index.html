@@ -7,7 +7,7 @@
     <script src="https://kit.fontawesome.com/86e7f73ceb.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="body">
     
     <div class="wrapper">
         <div class="overlay">
@@ -20,23 +20,54 @@
                 </div>
             </div>
         </div>
+        <div class="alert-message"></div>
+        <div class="form-modal">
+            <div class="form-container sign-in">
+                <div class=" close">X</div>
+                <form class="flex flex-column sign-in-form">
+                    <input type="text" placeholder="Email">
+                    <input type="password" placeholder="password">
+                    <input type="submit" placeholder="password" value="Sign In">
+                </form>
+                 <div class="already-user">
+                    <a href="">Already A user</a>
+                     <button class="form-btn login-sign-up-form-btn">Sign Up</button>
+                </div>
+            </div>
+            
+            <div class="form-container sign-up flex-column">
+                <div class="close"><sapn class="close-btn">X</sapn></div>
+                <form class="flex flex-column sign-up-form">
+                    <input type="text" placeholder="Name">
+                    <input type="text" placeholder="Email">
+                    <input type="password" placeholder="password">
+                    <input type="submit" placeholder="password" value="Sign up">
+                </form>
+
+                <div class="already-user">
+                    <a href="">Already A user</a>
+                    <button class="form-btn signIn-sign-form-in-btn">Sign in</button>
+                </div>
+            </div>
+        </div>
         <div class="main-container">
             <div class="header">
                 <!-- logo  -->
                 <div class="logo"><img src="./download.jpeg" alt=""></div>
                 <!-- nav items -->
                 <div class="nav-items flex">
-                    <div class="dark-mode"></div>
+                    <div class="dark-mode dark"></div>
                     <button class="sing-in-btn">Sign Up <i class="fa-solid fa-arrow-right-long"></i></button>
-                    <div class="hamburgurMenu"><i class="fa-solid fa-bars"></i></div>
+                    <div class="hamburgurMenu "><i class="fa-solid fa-bars"></i></div>
                 </div>
             </div>
             <div class="content">
                 <div class="sidebar">
-                    <h3>Categories</h3>
-                    <div class="categories"></div>
+                    <div class="categories">
+                        <div class="category"></div>
+                    </div>
                     <div class="support-ukrain">
-                        <div class="heading">
+                        <div class="support-heading">
                             <h2>Support Ukrain</h2>
                             <svg class="support__icon" width="20" height="32"> 
                                 <use href="/team-proj-js-book-app/icons.178e53ac.svg#icon-arms-icon"></use> 
