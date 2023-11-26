@@ -5,27 +5,34 @@ const container = document.getElementsByClassName('books-container')[0];
 const darkModeBtn = document.getElementsByClassName('dark-mode')[0];
 const signInBtn = document.getElementsByClassName('sing-in-btn')[0];
 const formModal = document.getElementsByClassName('form-modal')[0];
-const modalCloseBt = document.getElementsByClassName('close-btn')[0];
+const signInModalCloseBtn = document.getElementById('sign-in-close-btn');
+const loginModalCloseBtn = document.getElementById('login-close-btn');
 const singUpForm =  document.getElementsByClassName('sign-up')[0];
 const singInForm =  document.getElementsByClassName('sign-in')[0];
 const userData = JSON.parse(localStorage.getItem('user')) || [];
 const alertMessage =  document.getElementsByClassName('alert-message')[0];
-
+const heading = document.getElementsByClassName('heading')[0];
+const logOutBtn = document.getElementsByClassName('logout-btn')[0];
+const userLogOutBtn = document.getElementsByClassName('user-logout-btn')[0];
 // login from button already user
 const logInUpFormBtn = document.getElementsByClassName('login-sign-up-form-btn')[0];
-const loginInFormBtn = document.getElementsByClassName('login-sign-in-form-btn')[0];
+
+window.addEventListener('load' , () => {
+    if(userData){
+        signInBtn.style.display = "none"
+        logOutBtn.style.display = "block";
+    }
+})
 
 
-
-logInUpFormBtn.addEventListener('click' , () => {
-    singInForm.style.display = "none";
-    singUpForm.style.display = "block";
+logOutBtn.addEventListener('click' , () => {
+    // userLogOutBtn.style.display = "block";
+    userLogOutBtn.classList.toggle('show-logout-btn')
 })
 
 
 
 // singup from button already user
-const signUpFormBtn = document.getElementsByClassName('signIn-sign-form-up-btn')[0];
 const signInFormBtn = document.getElementsByClassName('signIn-sign-form-in-btn')[0];
 
 const signIn = document.getElementsByClassName('sign-in')[0];
@@ -56,9 +63,10 @@ function showAlert(message , messageRes){
 
 }
 
-modalCloseBt.addEventListener('click' , () => {
-    formModal.classList.remove('show-modal');
-})
+const removeClassModal = () => formModal.classList.remove('show-modal');
+
+loginModalCloseBtn.addEventListener('click' , removeClassModal);
+signInModalCloseBtn.addEventListener('click' , removeClassModal);
 
 
 // ==============  add user form data
@@ -74,7 +82,10 @@ function addUser(e){
         // alert("all")
         showAlert("All field are necessary" , 'invalid');
         return;
-    }else{
+      }else if(password.length <= 8){
+               showAlert("Password length must be greater then 8" , 'error');
+               return;
+      }else{
 
          const isUserExits = userData.some(user => user.email  === email);
         //  console.log(isUserExits);
@@ -100,12 +111,13 @@ singUpForm.addEventListener('submit' , addUser);
 function loginUser(e){
     e.preventDefault();
     if(userData){
-        const email  = userData.email;
-        const password = userData.password;
+        const email  = userData[0].email;
+        const password = userData[0].password;
 
         const inputEmailValue =  e.target.children[0].value;
         const inputPasswordValue =  e.target.children[1].value;
-        console.log(inputEmailValue , inputPasswordValue)
+        // console.log(first)
+        console.log(userData)
 
         if(inputEmailValue != email && password != inputPasswordValue){
             showAlert("Invalid Credientials" , 'invalid');
@@ -113,8 +125,10 @@ function loginUser(e){
         }else{
             showAlert('Logged In Succesfully' , 'success');
             formModal.classList.remove('show-modal');
-            signInBtn.textContent = userData.name;
-            
+            // signInBtn.innerHTML = `</i> ${userData[0].name}`;
+            signInBtn.style.display = "none";
+            logOutBtn.style.display = "block";
+            logOutBtn.innerHTML =  `<i class="fa-solid fa-user"></i> ${userData[0].name}`;
         }
     }
 }
@@ -164,11 +178,10 @@ async function fetchApi(query) {
 
 fetchApi("top-books");
 
-async function renderSidebar(books) {
+function renderSidebar(books) {
     let lists = books.map(list => `<p data-id="${list.list_name}">${list.list_name}</p>`)
-    sidebar.innerHTML += lists.join("");
+    sidebar.innerHTML = lists.join("");
     sidebar.children[0].classList.add('active');
-    // console.log(sidebar[])
     Array.from(sidebar.children).forEach(list => list.addEventListener('click' , showBooksCategoriesWise))
 }
 
@@ -179,7 +192,8 @@ function showBooksCategoriesWise(e){
     
     if(e.target.dataset.id === "All Categories"){
         // renderBooks()
-        document.getElementsByClassName('heading')[0].innerHTML = `<h1>Best Sellers <span>Books</span></h1>`;
+        heading.innerHTML = `<h1>Best Sellers <span>Books</span></h1>`;
+        // heading.classList.add('remove-padding')
         fetchApi("top-books");
     }else{
         showMoreBooks(e);
@@ -242,7 +256,8 @@ async function showMoreBooks(e) {
                         </div>
                      </div>`
         })
-        document.getElementsByClassName('heading')[0].innerHTML = `<h1>${startWord} <span>${lastWord}</span></h1>`;
+        heading.innerHTML = `<h1>${startWord} <span>${lastWord}</span></h1>`;
+        // heading.classList.remove('remove-padding');
         booksContainer.innerHTML = html.join("");
 
 

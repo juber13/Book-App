@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book App</title>
     <script src="https://kit.fontawesome.com/86e7f73ceb.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="slick/slick.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="body">
@@ -23,9 +26,11 @@
         <div class="alert-message"></div>
         <div class="form-modal">
             <div class="form-container sign-in">
-                <div class=" close">X</div>
+                <div class="close" >
+                    <span class="close-btn" id="login-close-btn">X</span>
+                </div>
                 <form class="flex flex-column sign-in-form">
-                    <input type="text" placeholder="Email">
+                    <input type="email" placeholder="Email" value="juberk1010@gmail.com">
                     <input type="password" placeholder="password">
                     <input type="submit" placeholder="password" value="Sign In">
                 </form>
@@ -36,7 +41,9 @@
             </div>
             
             <div class="form-container sign-up flex-column">
-                <div class="close"><sapn class="close-btn">X</sapn></div>
+                <div class="close">
+                    <sapn class="close-btn" id="sign-in-close-btn">X</sapn>
+                </div>
                 <form class="flex flex-column sign-up-form">
                     <input type="text" placeholder="Name">
                     <input type="text" placeholder="Email">
@@ -58,6 +65,8 @@
                 <div class="nav-items flex">
                     <div class="dark-mode dark"></div>
                     <button class="sing-in-btn">Sign Up <i class="fa-solid fa-arrow-right-long"></i></button>
+                    <button class="logout-btn btn user-info-btn">Juber</button>
+                    <button class="btn user-logout-btn">Logout</button>
                     <div class="hamburgurMenu "><i class="fa-solid fa-bars"></i></div>
                 </div>
             </div>

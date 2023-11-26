@@ -10,6 +10,32 @@ html , body{
 
 }
 
+/* ================= scroll bar effects */
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+
+
+/* =============== end */
+
 
 
 :root{
@@ -250,7 +276,7 @@ ul{
 /* ====== end overlay ==================== */
 
 .main-container{
-    width: 90%;
+    width: 91%;
     margin: 0 auto;
     position: relative;
     padding-bottom: 2rem;
@@ -323,6 +349,26 @@ ul{
 }
 
 
+.user-info-btn{
+    position: relative;
+    display: none;
+
+}
+
+.user-logout-btn{
+    position: absolute;
+    right: 0;
+    top:0.9%;
+    display: none;
+}
+
+
+.show-logout-btn{
+    display: block;
+}
+
+
+
 /* ======= hide hamburgur image */
 .hamburgurMenu{
     display: none;
@@ -335,7 +381,7 @@ ul{
 /* ============= content ============= */
 
 .content{
-    padding-top: 3rem;
+    padding-top: 1rem;
     width: 100%;
     display: flex;
     gap: 30px;
@@ -344,7 +390,7 @@ ul{
 
 .sidebar{
     width: 25%;
-    padding: 1rem;
+    /* padding: 1rem 0; */
     /* height: 600px; */
     overflow-wrap: break-word;
     display: flex;
@@ -354,7 +400,7 @@ ul{
 
 .sidebar .categories{
     padding: 1rem;
-    height: 600px;
+    height: 330px;
     overflow-wrap: break-word;
     overflow: scroll;
     overflow-x: hidden;
@@ -367,6 +413,10 @@ ul{
 
 .category p{
     margin: 10px 0;
+}
+
+.category p:first-child{
+    margin-top: 0;
 }
 
 .active{
@@ -409,31 +459,7 @@ ul{
     cursor: pointer;
 }
 
-/* ================= scroll bar effects */
-/* width */
-::-webkit-scrollbar {
-    width: 10px;
-    border-radius: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #888;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
 
-
-
-/* =============== end */
 
 .books-container{
     width: 75%;
@@ -441,43 +467,51 @@ ul{
     flex-direction: column;
 }
 
+.heading{
+    padding: 0rem 0 0 2rem;
+}
+
 .heading h1{
     font-size: 3rem;
     font-weight: bold;
+    /* margin-left: 25px; */
 }
 
 .heading h1 span{
     color: var(--text-color);
 }
 
+.remove-padding{
+    padding: 0;
+}
+
 .cards{
+    width: 100%;
     padding-top: 2rem;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: start;
-    gap: 20px;
+    gap: 29px;
 }
 
 .books-card{
     width: 100%;
-    /* height: 420px; */
     display: flex;
     flex-direction: column;
     align-items: start;
     padding: 1rem;
     border-radius: 10px;
-
+    
 }
 
 .cards-parent{
-    padding: 1rem;
+    padding: 1rem 0 1rem 1rem;
     display: flex;
-    gap: 10px;
-    height: 340px;
+    justify-content: space-between;
+    gap: 25px;
+    height: 310px;
 }
-
-
 
 .card {
     border: 1px solid #ddd;
@@ -485,6 +519,40 @@ ul{
     height: 250px;
     border-radius: 10px;
     color: #000;
+    background: #000;
+    position: relative;
+    transition: height 0.4s ease-in-out;
+    cursor: pointer;
+}
+
+.card:after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    height: 0;
+    background-color: var(--hover-color);
+    transition: 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.card:hover:after{
+    content: "QUICK VIEW";
+    height: 20%;
+    cursor: pointer;
+    color: #000;
+    /* line-height: 20%; */
+}
+
+
+
+#show-more-btn :hover{
+    background: #000;
 }
 
 .booklist{
